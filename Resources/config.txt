@@ -1,0 +1,9 @@
+DB_HOST=176.58.119.63
+DB_PORT=3306
+DB_PASS=OpenAi@2023
+DB_USER=huludeig_abegarage
+DB_NAME=huludeig_abegarage
+
+
+SERVER_HOST='localhost'
+SERVER_PORT = 7777
