@@ -1,3 +1,4 @@
+-- Active: 1701835742785@@176.58.119.63@3306@huludeig_abegarage
 -- Customers tables  
 CREATE TABLE IF NOT EXISTS `customer_identifier` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -134,8 +135,11 @@ CREATE TABLE IF NOT EXISTS `order_status` (
 ) ENGINE=InnoDB;
 
 -- Add the roles to the database 
-INSERT INTO company_roles (company_role_name)
-VALUES ('Employee'), ('Manager'), ('Admin');
+-- INSERT INTO company_roles (company_role_name)
+-- VALUES ('Employee'), ('Manager'), ('Admin');
+
+-- SELECT * FROM company_roles;
+
 
 -- -- This is the admin account 
 -- INSERT INTO employee (employee_email, active_employee, added_date)

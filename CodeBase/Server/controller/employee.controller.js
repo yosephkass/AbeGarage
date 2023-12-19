@@ -36,7 +36,7 @@ const employeeController = {
 				message: "The email is already in use",
 			});
 		}
-		console.log(isEmployee);
+		// console.log(isEmployee);
 
 		//check if password is encrypted
 		const salt = bcrypt.genSaltSync(10);
@@ -55,6 +55,9 @@ const employeeController = {
 		const employeePassword = await employeeService.insertIntoEmployeePassword(
 			req.body
 		);
+		// add role 
+		const employeeRole = await employeeService.insertIntoEmployeeRole({employee_id: req.body.employee_id, company_role_id: 1});
+
 
 		//send a message to confirm sucess
 		return res.status(200).json({

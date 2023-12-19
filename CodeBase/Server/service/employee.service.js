@@ -59,6 +59,16 @@ const employeeService = {
 			console.log(error);
 		}
 	},
+
+	insertIntoEmployeeRole: async (data) => {
+		try {
+			const row = await query(employeeQuery. insertEmployeeRoleTable,[data.employee_id,data.company_role_id]);
+			return row;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
 };
 
 export default employeeService;

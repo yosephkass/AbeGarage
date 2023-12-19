@@ -11,8 +11,10 @@ VALUES (?,?, ?, ?);`,
     
     
     insertEmployeePasswordTable:`INSERT INTO employee_pass (employee_id, employee_password_hashed)
-VALUES (?, ?);`
-    
+VALUES (?, ?);`,
+
+    insertEmployeeRoleTable:`INSERT INTO employee_role (employee_id, company_role_id)
+    VALUES (?, ?);`,
     
     
 };

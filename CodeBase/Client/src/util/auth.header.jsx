@@ -1,6 +1,7 @@
 const employeeAuthHeader = async () => {
   // console.log("Inside employeeAuthHeader");
   const employee = await JSON.parse(localStorage.getItem('employee'));
+  
   if (employee && employee.employee_token) {
     console.log("Inside employeeAuthHeader if statement");
     const decodedToken = await decodeTokenPayload(employee.employee_token);

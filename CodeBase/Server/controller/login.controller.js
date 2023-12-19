@@ -28,6 +28,7 @@ const loginController = {
         }
         //Chcek password and email 
         else {
+
             const employee_id = isEmployee[0].employee_id;
             const isPassword = await loginService.getEmployeePassByID(employee_id);
             const employee_password_hashed =
@@ -40,17 +41,21 @@ const loginController = {
                  });
             }
             else {
+              //get other infos for preparing token
+              const employeeRole = await loginService.getEmployeeRoleById(employee_id);
+              const employee_role = employeeRole[0].company_role_name;
+               const employeeInfo = await loginService.getEmployeeInfoById(employee_id);
+              const employee_first_name = employeeInfo[0].employee_first_name;
                 //Prepare JWT Token
                 const token = jwt.sign(
                   {
                     employee_id,
-                    employee_email,
+                     employee_first_name,
+                    employee_role
                   },
                   process.env.JWT_SECRET,
                   { expiresIn: "1h" }
                 );
-
-
 
                 return res.status(200).json({
                   success: true,
@@ -67,3 +72,7 @@ const loginController = {
 
 
 export default loginController;
+
+// employee.employee_role = decodedToken.employee_role;
+// employee.employee_id = decodedToken.employee_id;
+// employee.employee_first_name = decodedToken.employee_first_name;

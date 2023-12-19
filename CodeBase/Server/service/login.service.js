@@ -18,6 +18,24 @@ const loginService = {
       console.log(error);
     }
   },
+
+  getEmployeeRoleById: async (data) => {
+    try {
+      const row = await query(loginQuery.getEmployeeRoleById, [data]);
+      return row;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  getEmployeeInfoById: async (data) => {
+    try {
+      const row = await query(loginQuery.getEmployeeInfoById, [data]);
+      return row;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 export default loginService;

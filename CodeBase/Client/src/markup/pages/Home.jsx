@@ -1,11 +1,13 @@
 import React from "react";
+
+
 //images
-// import vban1 from "../../assets/images/custom/misc/vban1.jpg";
-// import vban2 from "../../assets/images/custom/misc/vban2.jpg";
+import vban1 from "../../assets/images/custom/misc/vban1.jpg";
+import vban2 from "../../assets/images/custom/misc/vban2.jpg";
 import bgImage from "../../assets/images/banner/banner.jpg";
-// import image3 from "../../assets/images/resource/image33.jpg";
-// import image4 from "../../assets/images/resource/image-4 (2).jpg";
-// import bgImage2 from "../../assets/images/background/bg2.png";
+import image3 from "../../assets/images/resource/image33.jpg";
+import image4 from "../../assets/images/resource/image-4 (2).jpg";
+import bgImage2 from "../../assets/images/background/bg2.png";
 
 const Home = () => {
   return (
@@ -47,8 +49,8 @@ const Home = () => {
             <div className="row">
               <div className="col-lg-5">
                 <div className="image-box">
-                  {/* <img className="parallax-image" src={vban1} alt="" />
-                  <img className="parallax-image" src={vban2} alt="" /> */}
+                  <img className="parallax-image" src={vban1} alt="" />
+                  <img className="parallax-image" src={vban2} alt="" />
                   <div
                     className="year-experience move-slowly"
                     data-parallax='{"y": 30}'
@@ -203,7 +205,7 @@ const Home = () => {
               </div>
               <div className="col-lg-6 autoImage">
                 <div className="image">
-                  {/* <img src={image3} alt="" /> */}
+                  <img src={image3} alt="" />
                 </div>
               </div>
             </div>
@@ -255,7 +257,7 @@ const Home = () => {
                 <div className="row">
                   <div className="col-md-5">
                     <div className="image">
-                      {/* <img src={image4} alt="" /> */}
+                      <img src={image4} alt="" />
                     </div>
                   </div>
                   <div className="col-md-7">
@@ -285,7 +287,7 @@ const Home = () => {
             data-parallax='{"y": 50}'
             className="sec-bg"
             style={{
-              // backgroundImage: `url(${bgImage2})`,
+              backgroundImage: `url(${bgImage2})`,
             }}
           ></div>
           <div className="auto-container">
