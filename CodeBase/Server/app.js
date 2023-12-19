@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import appRoute from "./route/index.js";
 
 dotenv.config();
@@ -13,8 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: "*", credentials: true }));
 app.use(appRoute);
 app.get("/", (req, res) => {
-  res.send("<h1>Response</h1>");
+	res.send("<h1>Response</h1>");
 });
 app.listen(port, host, () => {
-  console.log(`http://${host}:${port}`);
+	console.log(`http://${host}:${port}`);
 });

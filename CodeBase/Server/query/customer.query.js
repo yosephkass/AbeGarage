@@ -1,36 +1,36 @@
 export default {
-  getCustomerByEmail: `SELECT *
+	getCustomerByEmail: `SELECT *
 FROM customer_identifier
 WHERE customer_email = ?;
 `,
 
-  insertIntoCustomerIdentifierTable: `INSERT INTO customer_identifier (customer_email, customer_phone_number, customer_added_date, customer_hash)
+	insertIntoCustomerIdentifierTable: `INSERT INTO customer_identifier (customer_email, customer_phone_number, customer_added_date, customer_hash)
 VALUES (?, ?,NOW(),?)`,
 
-  insertCustomerInfoTable: `INSERT INTO customer_info (customer_id, customer_first_name, customer_last_name, active_customer_status)
+	insertCustomerInfoTable: `INSERT INTO customer_info (customer_id, customer_first_name, customer_last_name, active_customer_status)
 VALUES (?,?,?,?);`,
 
-  insertCustomerVehicleInfoTable: `INSERT INTO customer_vehicle_info (customer_id, vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color)
+	insertCustomerVehicleInfoTable: `INSERT INTO customer_vehicle_info (customer_id, vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color)
 VALUES (?,?,?,?,?,?,?,?,?);`,
 
-  getCustomerByID: `SELECT *
+	getCustomerByID: `SELECT *
 FROM customer_identifier
 WHERE customer_id = ?;
 `,
 
-  //update
-  updateCustomerInfoTable: `UPDATE customer_info SET customer_first_name = ?,
+	//update
+	updateCustomerInfoTable: `UPDATE customer_info SET customer_first_name = ?,
     customer_last_name = ?,
     active_customer_status = ?
     WHERE customer_id =?`,
 
-  updateCustomerPhoneNumber: `UPDATE customer_identifier
+	updateCustomerPhoneNumber: `UPDATE customer_identifier
 SET customer_phone_number = ?
 WHERE customer_id = ?`,
 };
 
 //update customer
-updateCustomerTable: ``;
+// updateCustomerTable: ``;
 /*UPDATE customer_info
 SET customer_first_name = 'Test',
     customer_last_name = 'Test',
@@ -49,5 +49,8 @@ INSERT INTO customer_info (customer_id, customer_first_name, customer_last_name,
 VALUES (?,?,?);
 
 -- Inserting data into customer_vehicle_info table
-INSERT INTO customer_vehicle_info (customer_id, vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color)
+INSERTINTO customer_vehicle_info (customer_id, vehicle_year, vehicle_make, vehicle_model, vehicle_type, vehicle_mileage, vehicle_tag, vehicle_serial, vehicle_color)
 VALUES (?,?,?,?,?,?,?,?,?);*/
+
+// insertIntocustomervehicleinfoTable: `INSERT INTO customer_identifier (customer_email, customer_phone_number, customer_added_date, customer_hash)
+// VALUES (?, ?,NOW(),?)`,
