@@ -1,5 +1,5 @@
 import React from "react";
-
+import { AuthContext } from "../../Contexts/AuthContext";
 
 //images
 import vban1 from "../../assets/images/custom/misc/vban1.jpg";
@@ -8,8 +8,13 @@ import bgImage from "../../assets/images/banner/banner.jpg";
 import image3 from "../../assets/images/resource/image33.jpg";
 import image4 from "../../assets/images/resource/image-4 (2).jpg";
 import bgImage2 from "../../assets/images/background/bg2.png";
+import { useContext } from "react";
 
 const Home = () => {
+  const { isLogged, isAdmin, setIsAdmin, setIsLogged, employee } =
+    useContext(AuthContext);
+  // console.log(employee);
+  // console.log(isLogged);
   return (
     <div>
       <div className="page-wrapper">
@@ -22,7 +27,7 @@ const Home = () => {
             }}
           ></div>
           <div className="auto-container">
-            <h5>Working since 1999</h5>
+            <h5>{employee.employee_first_name}Working since 1999</h5>
             <h2>
               Tuneup Your Car <br />
               to Next Level
