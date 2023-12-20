@@ -8,6 +8,7 @@ const loginController = {
     login: async (req, res) => {
         //check all fields are submitted
         const {employee_email, employee_password} = req.body
+   
         if (
           !employee_email ||
           !employee_password
@@ -30,9 +31,12 @@ const loginController = {
         else {
 
             const employee_id = isEmployee[0].employee_id;
+
             const isPassword = await loginService.getEmployeePassByID(employee_id);
             const employee_password_hashed =
               isPassword[0].employee_password_hashed;
+            
+            // compare 
             const isMatch = bcrypt.compareSync(employee_password,employee_password_hashed)
             if (!isMatch) {
                  return res.status(400).json({
@@ -44,24 +48,25 @@ const loginController = {
               //get other infos for preparing token
               const employeeRole = await loginService.getEmployeeRoleById(employee_id);
               const employee_role = employeeRole[0].company_role_name;
+              //get first name 
                const employeeInfo = await loginService.getEmployeeInfoById(employee_id);
               const employee_first_name = employeeInfo[0].employee_first_name;
-                //Prepare JWT Token
+                
+              //Prepare JWT Token
                 const token = jwt.sign(
                   {
                     employee_id,
-                     employee_first_name,
+                    employee_first_name,
                     employee_role
                   },
                   process.env.JWT_SECRET,
-                  { expiresIn: "1h" }
+                  // { expiresIn: "1h" }
                 );
 
                 return res.status(200).json({
                   success: true,
                     message: "Logged-in successfully",
                     token
-                  
                 //Token sent successfully
                 
                 });

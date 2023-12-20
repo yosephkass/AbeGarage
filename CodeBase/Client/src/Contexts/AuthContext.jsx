@@ -1,38 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
-// import auth header 
-import employeeAuthHeader from "../util/auth.header";
+import React, { useEffect, useContext, useState } from "react";
+import employeeAuthHeader from '../util/auth.header';
 
-// Create the AuthContext 
+// create AuthContext
 const AuthContext = React.createContext();
 
-// Export the AuthContext
-export const useAuth = () => {
-  return useContext(AuthContext);
-}
-
-// Create the AuthProvider 
+// Create the AuthProvider
 export const AuthProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [employee, setEmployee] = useState(null);
+  const [employee, setEmployee] = useState({});
 
   const value = { isLogged, isAdmin, setIsAdmin, setIsLogged, employee };
 
   useEffect(() => {
-    // Retrieve the logged in user from local storage
-    const loggedInEmployee = employeeAuthHeader();
-    // console.log(loggedInEmployee);
-    loggedInEmployee.then((response) => {
-      // console.log(response);
-      if (response.employee_token) {
+    // retrieving data from browser local database
+    const fetchToken = async () => {
+      const isEmployee = await employeeAuthHeader();
+      // console.log(isEmployee);
+      if (isEmployee) {
         setIsLogged(true);
-        // 3 is the employee_role for admin
-        if (response.employee_role === 3) {
+        setEmployee(isEmployee);
+        if (isEmployee.employee_role === 'Admin') {
           setIsAdmin(true);
         }
-        setEmployee(response);
       }
-    });
+    };
+    fetchToken();
   }, []);
 
   return (
@@ -40,4 +33,9 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-}
+};
+
+// Export the AuthContext
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

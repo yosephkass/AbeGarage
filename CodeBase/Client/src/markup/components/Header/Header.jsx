@@ -1,14 +1,21 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 // Import the logo image
 import logo from "../../../assets/images/logo.png";
 // Import the auth hook
-// import { useAuth } from "../../../Contexts/AuthContext";
+ import { useAuth } from "../../../Contexts/AuthContext";
 
 function Header(props) {
-  // Use the auth hook to get the current context
-  // Checks if the user is logged in and if the user is an admin
-  // console.log(useAuth()); // Check if context is working
-  // const { isLogged, setIsLogged, employee } = useAuth();
+  const { isLogged, setIsLogged, employee } = useAuth();
+
+
+
+
+  // logout function 
+  const handleLogout = ()=>{
+   localStorage.removeItem('employee');
+  }
+
 
   return (
     <div>
@@ -34,9 +41,9 @@ function Header(props) {
             <div class="inner-container">
               <div class="logo-box">
                 <div class="logo">
-                  <a href="/">
+                  <Link to="/">
                     <img src={logo} alt="" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div class="right-column">
@@ -51,16 +58,16 @@ function Header(props) {
                     >
                       <ul class="navigation">
                         <li class="dropdown">
-                          <a href="/">Home</a>
+                          <Link to="/">Home</Link>
                         </li>
                         <li class="dropdown">
-                          <a href="/about">About Us</a>
+                          <Link to="/about">About Us</Link>
                         </li>
                         <li class="dropdown">
-                          <a href="/services">Services</a>
+                          <Link to="/services">Services</Link>
                         </li>
                         <li>
-                          <a href="/contact">Contact Us</a>
+                          <Link to="/contact">Contact Us</Link>
                         </li>
                       </ul>
                     </div>
@@ -68,9 +75,16 @@ function Header(props) {
                 </div>
                 <div class="search-btn"></div>
                 <div class="link-btn">
-                  <a href="/login" class="theme-btn btn-style-one">
+                  {isLogged? <Link to="/login" class="theme-btn btn-style-one">
+                    Logout
+                  </Link> :
+                  <Link to="/login" class="theme-btn btn-style-one" 
+                  onClick={handleLogout}  
+                  >
                     Login
-                  </a>
+                  </Link>
+                  }
+                  
                 </div>
               </div>
             </div>
@@ -82,9 +96,9 @@ function Header(props) {
               <div class="inner-container">
                 <div class="logo-box">
                   <div class="logo">
-                    <a href="/">
+                    <Link to="/">
                       <img src="assets/images/custom/logo.png" alt="" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div class="right-column">
@@ -97,9 +111,9 @@ function Header(props) {
                   </div>
                   <div class="search-btn"></div>
                   <div class="link-btn">
-                    <a href="/login" class="theme-btn btn-style-one">
+                    <Link to="/login" class="theme-btn btn-style-one">
                       Login
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -114,9 +128,9 @@ function Header(props) {
 
           <nav class="menu-box">
             <div class="nav-logo">
-              <a href="index.html">
+              <Link to="index.html">
                 <img src="assets/images/logo-two.png" alt="" title="" />
-              </a>
+              </Link>
             </div>
             <div class="menu-outer"></div>
           </nav>

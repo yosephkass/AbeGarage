@@ -11,6 +11,7 @@ const employeeController = {
 			employee_phone,
 			active_employee,
 			employee_password,
+			company_role_id
 		} = req.body;
 
 		if (
@@ -19,7 +20,8 @@ const employeeController = {
 			!employee_last_name ||
 			!employee_phone ||
 			!active_employee ||
-			!employee_password
+			!employee_password ||
+			!company_role_id
 		) {
 			return res.status(400).json({
 				success: false,
@@ -56,7 +58,7 @@ const employeeController = {
 			req.body
 		);
 		// add role 
-		const employeeRole = await employeeService.insertIntoEmployeeRole({employee_id: req.body.employee_id, company_role_id: 1});
+		const employeeRole = await employeeService.insertIntoEmployeeRole({employee_id: req.body.employee_id, company_role_id: company_role_id});
 
 
 		//send a message to confirm sucess
