@@ -27,6 +27,19 @@ WHERE customer_id = ?;
 	updateCustomerPhoneNumber: `UPDATE customer_identifier
 SET customer_phone_number = ?
 WHERE customer_id = ?`,
+
+	// Update customer vehicle information
+	updateCustomerVehicleInfoTable: `UPDATE customer_vehicle_info
+SET 
+  vehicle_year = ?,
+  vehicle_make = ?,
+  vehicle_model = ?,
+  vehicle_type = ?,
+  vehicle_mileage = ?,
+  vehicle_tag = ?,
+  vehicle_serial = ?,
+  vehicle_color = ?
+WHERE customer_id = ?;`,
 };
 
 //update customer

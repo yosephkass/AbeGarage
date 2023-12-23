@@ -29,6 +29,24 @@ const vehicleService = {
 			console.log(error);
 		}
 	},
+	updateIntoCustomerVehicleInfoTable: async (data) => {
+		try {
+			const row = await query(customerQuery.updateCustomerVehicleInfoTable, [
+				data.customer_id,
+				data.vehicle_year,
+				data.vehicle_make,
+				data.vehicle_model,
+				data.vehicle_type,
+				data.vehicle_mileage,
+				data.vehicle_tag,
+				data.vehicle_serial,
+				data.vehicle_color,
+			]);
+			return row;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default vehicleService;
