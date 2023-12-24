@@ -40,7 +40,31 @@ SET
   vehicle_serial = ?,
   vehicle_color = ?
 WHERE customer_id = ?;`,
+
+	deleteCustomer: `DELETE FROM customer_info
+WHERE customer_id = ?;
+`,
 };
+// Delete customer from customer_identifier table
+// 	deleteCustomerByIdentifier: `
+//   DELETE FROM customer_identifier
+//   WHERE customer_id = ?;
+// `,
+
+// Delete customer from customer_info table
+// 	deleteCustomerInfoById: `
+//   DELETE FROM customer_info
+//   WHERE customer_id = ?;
+// `,
+
+// Delete customer from customer_vehicle_info table
+// 	deleteCustomerVehicleInfoById: `
+//   DELETE FROM customer_vehicle_info
+//   WHERE customer_id = ?;
+// `,
+
+// 	deleteCustomerVehicleInfo: `DELETE FROM customer_vehicle_info
+// WHERE customer_id = ?;`,
 
 //update customer
 // updateCustomerTable: ``;

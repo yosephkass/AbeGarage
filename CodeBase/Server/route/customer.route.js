@@ -4,5 +4,7 @@ const customerRoute = express.Router();
 
 customerRoute.post("/api/customer", customerController.createCustomer);
 customerRoute.put("/api/customer", customerController.updateCustomer);
+customerRoute.delete("/api/customer", customerController.deleteCustomer);
+// customerRoute.delete("/api/customer/:customerId", customerController.deleteCustomer);
 
 export default customerRoute;

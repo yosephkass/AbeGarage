@@ -174,6 +174,35 @@ const customerController = {
 			message: "customer updated successfully!",
 		});
 	},
+
+	deleteCustomer: async (req, res) => {
+		const { customer_id } = req.body;
+
+		if (!customer_id) {
+			return res.status(400).json({
+				success: false,
+				message: "Customer Id is required",
+			});
+		}
+
+		const customer = await customerService.getCustomerByID(customer_id);
+
+		if (!customer || customer.length === 0) {
+			return res.status(404).json({
+				success: false,
+				message: "Customer with the provided ID not found",
+			});
+		}
+
+		// Start deleting
+		await customerService.deleteCustomerData(customer_id);
+
+		// Send a confirmation message for the successful deletion of the customer account.
+		return res.status(200).json({
+			success: true,
+			message: `Customer with ID ${customer_id} successfully deleted.`,
+		});
+	},
 };
 
 export default customerController;

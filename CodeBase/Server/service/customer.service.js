@@ -73,6 +73,15 @@ const customerService = {
 			console.log(error);
 		}
 	},
+
+	deleteCustomerData: async (data) => {
+		try {
+			const row = await query(customerQuery.deleteCustomer, [data.customer_id]);
+			return row;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default customerService;
