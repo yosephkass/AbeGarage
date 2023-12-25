@@ -11,7 +11,7 @@ const employeeController = {
 			employee_phone,
 			active_employee,
 			employee_password,
-			company_role_id
+			company_role_id,
 		} = req.body;
 
 		if (
@@ -57,14 +57,63 @@ const employeeController = {
 		const employeePassword = await employeeService.insertIntoEmployeePassword(
 			req.body
 		);
-		// add role 
-		const employeeRole = await employeeService.insertIntoEmployeeRole({employee_id: req.body.employee_id, company_role_id: company_role_id});
-
+		// add role
+		const employeeRole = await employeeService.insertIntoEmployeeRole({
+			employee_id: req.body.employee_id,
+			company_role_id: company_role_id,
+		});
 
 		//send a message to confirm sucess
 		return res.status(200).json({
 			success: true,
 			message: "Employee added successfully!",
+		});
+	},
+
+	updateEmployeeInfo: async (req, res) => {
+		//Check all fields are provided
+		const {
+			employee_email,
+			employee_first_name,
+			employee_last_name,
+			employee_phone,
+			active_employee,
+			employee_password,
+			company_role_id,
+		} = req.body;
+
+		if (
+			!employee_email ||
+			!employee_first_name ||
+			!employee_last_name ||
+			!employee_phone ||
+			!active_employee ||
+			!employee_password ||
+			!company_role_id
+		) {
+			return res.status(400).json({
+				success: false,
+				message: "All fields are required",
+			});
+		}
+		// Check email is unique
+		const EmployeeInfo = await employeeService.getEmployeeByEmail(
+			employee_email
+		);
+		if (!EmployeeInfo || EmployeeInfo.length === 0) {
+			return res.status(400).json({
+				success: false,
+				message: "Employee not found",
+			});
+		}
+		//Start updating
+		const employeeInfo = await employeeService.updateEmployeeInfoTable(
+			req.body
+		);
+		//send a message to confirm sucess
+		return res.status(200).json({
+			success: true,
+			message: "Employee updated successfully!",
 		});
 	},
 };
