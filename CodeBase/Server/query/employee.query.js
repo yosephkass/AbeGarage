@@ -1,6 +1,9 @@
 export default {
 	getEmployee: `SELECT * from employee`,
+
 	getEmployeeByEmail: `SELECT * from employee WHERE employee_email = ?`,
+
+	getEmployeeById: `SELECT * FROM employee WHERE employee_id = ?;`,
 
 	insertIntoEmployeeTable: `INSERT INTO employee (employee_email, active_employee, added_date)
 VALUES (?, ?, NOW());`,
@@ -17,4 +20,7 @@ VALUES (?, ?);`,
 	updateEmployeeInfo: `UPDATE employee_info 
     SET employee_first_name = ?, employee_last_name = ?, employee_phone = ?
     WHERE employee_id = ?;`,
+
+	deleteEmployeeInfo: `DELETE FROM employee_info
+	WHERE employee_id = ?;`,
 };

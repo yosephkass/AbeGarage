@@ -116,6 +116,34 @@ const employeeController = {
 			message: "Employee updated successfully!",
 		});
 	},
+	deleteEmployeeInfo: async (req, res) => {
+		const { employee_id } = req.body;
+
+		if (!employee_id) {
+			return res.status(400).json({
+				success: false,
+				message: "Employee Id is required",
+			});
+		}
+
+		const employee = await employeeService.getEmployeeById(employee_id);
+
+		if (!employee || employee.length === 0) {
+			return res.status(404).json({
+				success: false,
+				message: "Employee with the provided ID not found",
+			});
+		}
+
+		// Start deleting
+		await employeeService.deleteEmployeeData(employee_id);
+
+		// Send a confirmation message for the successful deletion of the employee account.
+		return res.status(200).json({
+			success: true,
+			message: `Employee with ID ${employee_id} successfully deleted.`,
+		});
+	},
 };
 
 export default employeeController;

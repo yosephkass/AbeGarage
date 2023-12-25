@@ -1,10 +1,19 @@
 import { query } from "../config/pool.js";
 import employeeQuery from "../query/employee.query.js";
+// import employeeQuery from "../query/employee.query.js";
 
 const employeeService = {
 	getEmployeeByEmail: async (data) => {
 		try {
 			const row = await query(employeeQuery.getEmployeeByEmail, [data]);
+			return row;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	getEmployeeById: async (data) => {
+		try {
+			const row = await query(employeeQuery.getEmployeeById, [data]);
 			return row;
 		} catch (error) {
 			console.log(error);
@@ -78,6 +87,17 @@ const employeeService = {
 				data.employee_first_name,
 				data.employee_last_name,
 				data.employee_phone,
+			]);
+			return row;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
+	deleteEmployeeData: async (data) => {
+		try {
+			const row = await query(employeeQuery.deleteEmployeeInfo, [
+				data.employee_id,
 			]);
 			return row;
 		} catch (error) {
