@@ -44,6 +44,30 @@ WHERE customer_id = ?;`,
 	deleteCustomer: `DELETE FROM customer_info
 WHERE customer_id = ?;
 `,
+
+
+
+allCustomers_data: `SELECT
+    customer_info.customer_id,
+    customer_info.customer_first_name AS firstName,
+    customer_info.customer_last_name AS lastName,
+    customer_identifier.customer_email AS email,
+    customer_identifier.customer_phone_number AS phoneNumber,
+    customer_identifier.customer_added_date AS addedDate,
+    customer_info.active_customer_status AS active
+FROM
+    customer_info
+JOIN
+    customer_identifier
+ON
+    customer_info.customer_id = customer_identifier.customer_id;`,
+
+
+
+
+
+
+
 };
 // Delete customer from customer_identifier table
 // 	deleteCustomerByIdentifier: `

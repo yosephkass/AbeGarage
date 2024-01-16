@@ -82,6 +82,16 @@ const customerService = {
 			console.log(error);
 		}
 	},
+
+
+	allcustomer: async () => {
+		try {
+			const row = await query(customerQuery.allCustomers_data);
+			return row;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default customerService;

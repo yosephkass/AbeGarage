@@ -15,6 +15,7 @@ import Fo4 from "./markup/pages/404";
 // admin page
 import AddEmployee from "./markup/pages/admin/AddEmployee/AddEmployee";
 import AddCustomer from "./markup/pages/admin/addCustomer/AddCustomer";
+
 import EmployeeList from "./markup/pages/admin/employee/employeeList";
 //Importing Components
 import Header from "./markup/components/Header/Header";
@@ -23,6 +24,7 @@ import AddEmployeePage from "./markup/pages/admin/AddEmployeePage";
 import AddCustomerPage from "./markup/pages/admin/AddCustomerPage";
 import AdminDashbordPage from "./markup/pages/admin/AdminDashbordPage";
 import UpdateCustomerPage from "./markup/pages/admin/updateCustomer/UpdateCustomerPage";
+import CustomerList from "./markup/pages/admin/Custoner/CustomerList";
 
 function App() {
 	return (
@@ -88,6 +90,15 @@ function App() {
 					element={
 						<>
 							<AddCustomerPage />
+						</>
+					}
+				/>
+				
+				<Route
+					path="/admin/customer"
+					element={
+						<>
+							<CustomerList />
 						</>
 					}
 				/>

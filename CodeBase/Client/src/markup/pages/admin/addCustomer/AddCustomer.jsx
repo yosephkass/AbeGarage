@@ -9,16 +9,16 @@ function AddCustomer() {
 	const hadleSubmit = async (e) => {
 		e.preventDefault();
 		const isvalid = formvali.validateForm2(form);
-		console.log(isvalid);
+		console.log(form);
 		if (!isvalid.isValid) {
 			console.log(isvalid.errors);
 		} else {
 			try {
-				const responce = await axios.post("/api/add-customer", form);
+				const responce = await axios.post("/api/customer", form);
 				if (responce.data.success) {
 					e.target.value = "";
 					alert(responce.data.message);
-					window.location.reload();
+				//	window.location.reload();
 				}
 			} catch (error3) {
 				alert(error3.response.data.message);
@@ -78,13 +78,13 @@ function AddCustomer() {
 								<div className="form-group col-md-12">
 									<input
 										type="text"
-										name="customer_phone"
-										placeholder="customer phone"
+										name="customer_phone_number"
+										placeholder="customer_phone_number"
 										required
 										onChange={(e) => {
 											setForm({
 												...form,
-												customer_phone: e.target.value,
+												customer_phone_number: e.target.value,
 											});
 										}}
 									/>

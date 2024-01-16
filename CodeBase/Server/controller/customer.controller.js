@@ -1,86 +1,14 @@
 import customerService from "../service/customer.service.js";
 import bcrypt from "bcrypt";
 
-// const customerController = {
-//   createCustomer: async (req, res) => {
-//     //Check all fields are provided
-//     const {
-//       customer_email,
-//       customer_phone_number,
-//       customer_first_name,
-//       customer_last_name,
-//       customer_hash,
-//       active_customer_status,
-//     } = req.body;
-
-//     if (
-//       !customer_email ||
-//       !customer_first_name ||
-//       !customer_last_name ||
-//       !customer_phone_number ||
-//       !active_customer_status ||
-//       !customer_hash
-//     ) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "All fields are required",
-//       });
-//     }
-
-//     //Check email is unique
-//     const isCustomer = await customerService.getCustomerByEmail(customer_email);
-
-//     if (isCustomer.length) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "The email is already in use",
-//       });
-//     }
-//     // console.log(isCustomer);
-
-//     //check to insert data into database
-//     const customerIdentifier =
-//       await customerService.insertIntoCustomerIdentifierTable(req.body);
-
-//     req.body.customer_id = customerIdentifier.insertId;
-
-//     const customerInfo = await customerService.insertCustomerInfoTable(
-//       req.body
-//     );
-
-//     //send a message to confirm sucess
-//     return res.status(200).json({
-//       success: true,
-//       message: "customer added successfully!",
-//     });
-//     },
-
-//     updateCustomer: async (req, res) => {
-//         const {
-//             customer_id,
-//             customer_phone_number,
-//             customer_first_name,
-//             customer_last_name,
-//             active_customer_status,
-//         } = req.body;
-//         if (
-//             !customer_id ||
-//             !customer_phone_number ||
-//             !customer_first_name ||
-//             !customer_last_name ||
-//             !active_customer_status
-//         ) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "All fields are required",
-//             });
-//         };
-
-// export default customerController;
-
 const customerController = {
 	createCustomer: async (req, res) => {
 		// Check all fields are provided
+
+		req.body.active_customer_status = 1;
+		const salt = bcrypt.genSaltSync(10);
+		req.body.customer_hash = bcrypt.hashSync(req.body.customer_email, salt);
+
 		const {
 			customer_email,
 			customer_phone_number,
@@ -89,6 +17,7 @@ const customerController = {
 			customer_hash,
 			active_customer_status,
 		} = req.body;
+
 
 		if (
 			!customer_email ||
@@ -132,6 +61,7 @@ const customerController = {
 	},
 
 	updateCustomer: async (req, res) => {
+		console.log(req.body)
 		const {
 			customer_id,
 			customer_phone_number,
@@ -139,7 +69,13 @@ const customerController = {
 			customer_last_name,
 			active_customer_status,
 		} = req.body;
-
+console.log( {
+	customer_id,
+	customer_phone_number,
+	customer_first_name,
+	customer_last_name,
+	active_customer_status,
+})
 		if (
 			!customer_id ||
 			!customer_phone_number ||
@@ -201,6 +137,15 @@ const customerController = {
 		return res.status(200).json({
 			success: true,
 			message: `Customer with ID ${customer_id} successfully deleted.`,
+		});
+	},
+
+	allcustomer: async (req, res, next) => {
+		const row = await customerService.allcustomer();
+		
+		res.status(200).json({
+			success: true,
+			data: row
 		});
 	},
 };

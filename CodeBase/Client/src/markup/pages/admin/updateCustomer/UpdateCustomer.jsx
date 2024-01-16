@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../../../../util/axios";
 import formvali from "../../../../util/validation";
+import { useNavigate } from "react-router-dom";
 
-function UpdateCustomer() {
+function UpdateCustomer(props) {
+	const navigator = useNavigate();
 	const [form, setForm] = useState({
-		customer_id: "", // this is just for a test
-		customer_first_name: "",
-		customer_last_name: "",
-		customer_phone: "",
-		active_customer_status: 0,
+		customer_id: props.data.customer_id, // this is just for a test
+		customer_first_name: props.data.firstname,
+		customer_last_name: props.data.lastName,
+		customer_phone_number: props.data.Phone,
+		active_customer_status: props.data.Active,
 	});
 
+
 	const [errors, setErrors] = useState({});
+
 
 	// Function to update the customer in the form state
 	const updateCustomer = (updatedData) => {
@@ -21,20 +25,21 @@ function UpdateCustomer() {
 		}));
 	};
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		form.active_customer_status = form.active_customer_status ? 1 : 0;
 		const isValid = formvali.validateForm3(form);
 		
 
-		if (!isValid.isValid) {
-			setErrors(isValid.errors);
-			console.log(isValid.errors);
-			console.log("checking");
-		} else {
+		// if (!isValid.isValid) {
+		// 	setErrors(isValid.errors);
+		// 	console.log(isValid.errors);
+		// 	console.log("checking");
+		// } else {
 			try {
 				const response = await axios.put(
-					`/api/update-single-customer/${form.customer_id}`,
+					`/api/customer`,
 					form
 				);
 					console.log(response);
@@ -46,15 +51,17 @@ function UpdateCustomer() {
 						customer_id: "",
 						customer_first_name: "",
 						customer_last_name: "",
-						customer_phone: "",
+						customer_phone_number: "",
 						active_customer_status: 1,
 					});
 				}
 			} catch (error) {
 				alert(error.response.data.message);
 			}
-		}
+		// }
 	};
+
+
 
 	return (
 		<>
@@ -74,6 +81,8 @@ function UpdateCustomer() {
 											name="customer_id"
 											placeholder="customer id"
 											required
+											
+											disabled
 											value={form.customer_id}
 											onChange={(e) =>
 												setForm({
@@ -132,16 +141,16 @@ function UpdateCustomer() {
 											name="customer_phone"
 											placeholder="customer phone"
 											required
-											value={form.customer_phone}
+											value={form.customer_phone_number}
 											onChange={(e) =>
 												setForm({
 													...form,
-													customer_phone: e.target.value,
+													customer_phone_number: e.target.value,
 												})
 											}
 										/>
-										{errors.customer_phone && (
-											<p className="error-message">{errors.customer_phone}</p>
+										{errors.customer_phone_number && (
+											<p className="error-message">{errors.customer_phone_number}</p>
 										)}
 									</div>
 									<div className="form-group col-md-12">

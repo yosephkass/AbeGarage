@@ -83,8 +83,9 @@ export default {
 		}
 
 		// Validate employee phone
-		if (!form.customer_phone) {
-			errors.customer_phone = "customer phone is required";
+		if (!form.customer_phone_number
+			) {
+			errors.customer_phone_number = "customer phone is required";
 			isValid = false;
 		}
 
@@ -114,8 +115,8 @@ export default {
 		}
 
 		// Validate employee phone
-		if (!form.customer_phone) {
-			errors.customer_phone = "customer phone is required";
+		if (!form.customer_phone_number) {
+			errors.customer_phone_number = "customer phone is required";
 			isValid = false;
 		}
 

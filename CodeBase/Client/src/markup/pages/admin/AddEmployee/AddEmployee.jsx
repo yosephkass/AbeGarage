@@ -1,30 +1,16 @@
 import React, { useState } from "react";
 // import "./addEmployee.css";
-import validateForm from "../../../../util/validation";
+
 import axios from "../../../../util/axios";
 const AddEmployee = () => {
 	const [form, setForm] = useState({});
 	const [errors, setErrors] = useState({});
 
 	const hadleSubmit = async (e) => {
+		console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 		e.preventDefault();
-		const isvalid = validateForm(form);
-		console.log(isvalid);
-		if (!isvalid.isValid) {
-			console.log(isvalid.errors);
-		} else { 
-			try {
-				form.active_employee = 1;
-				const responce = await axios.post("/api/employee", form);
-				if (responce.data.success) {
-					e.target.value = "";
-					alert(responce.data.message);
-					window.location.reload();
-				}
-			} catch (error3) {
-				alert(error3.response.data.message);
-			}
-		}
+		console.log(form);
+
 	};
 
 	return (
@@ -133,6 +119,7 @@ const AddEmployee = () => {
 									<button
 										className="theme-btn btn-style-one"
 										type="submit"
+									
 										data-loading-text="Please wait..."
 									>
 										<span>Submit now</span>

@@ -1,5 +1,5 @@
 import React from "react";
-import Admin from "../../../components/Admin/AdminPage/Admin";
+import Admin from "../../../components/Admin/AdminMenu/Admin";
 import AddCustomer from "./AddCustomer";
 
 function AddCustomerPage() {
