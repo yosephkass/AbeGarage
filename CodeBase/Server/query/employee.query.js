@@ -23,4 +23,22 @@ VALUES (?, ?);`,
 
 	deleteEmployeeInfo: `DELETE FROM employee_info
 	WHERE employee_id = ?;`,
+
+	getEmployeeList: `SELECT 
+	e.employee_id,
+	e.active_employee AS active_employee,
+	ei.employee_first_name AS firstname,
+	ei.employee_last_name AS lastname,
+	e.employee_email AS email,
+	ei.employee_phone AS phone,
+	e.added_date AS added_date,
+	cr.company_role_name AS company_role_name
+FROM 
+	employee e
+JOIN 
+	employee_info ei ON e.employee_id = ei.employee_id
+JOIN 
+	employee_role er ON e.employee_id = er.employee_id
+JOIN 
+	company_roles cr ON er.company_role_id = cr.company_role_id;`
 };

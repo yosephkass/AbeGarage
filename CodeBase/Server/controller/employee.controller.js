@@ -78,7 +78,7 @@ const employeeController = {
 			employee_last_name,
 			employee_phone,
 			active_employee,
-			employee_password,
+			// employee_password,
 			company_role_id,
 		} = req.body;
 
@@ -87,9 +87,10 @@ const employeeController = {
 			!employee_first_name ||
 			!employee_last_name ||
 			!employee_phone ||
-			!active_employee ||
-			!employee_password ||
-			!company_role_id
+			!active_employee 
+			//||
+			// !employee_password ||
+			//!company_role_id
 		) {
 			return res.status(400).json({
 				success: false,
@@ -100,6 +101,7 @@ const employeeController = {
 		const EmployeeInfo = await employeeService.getEmployeeByEmail(
 			employee_email
 		);
+		
 		if (!EmployeeInfo || EmployeeInfo.length === 0) {
 			return res.status(400).json({
 				success: false,
@@ -116,6 +118,7 @@ const employeeController = {
 			message: "Employee updated successfully!",
 		});
 	},
+
 	deleteEmployeeInfo: async (req, res) => {
 		const { employee_id } = req.body;
 
@@ -144,6 +147,15 @@ const employeeController = {
 			message: `Employee with ID ${employee_id} successfully deleted.`,
 		});
 	},
+
+	getEmployeeList: async (req, res) => {
+		const employees = await employeeService.getEmployeeList();
+		return res.status(200).json({
+			success: true,
+			data:  employees
+		});
+	}
+	
 };
 
 export default employeeController;

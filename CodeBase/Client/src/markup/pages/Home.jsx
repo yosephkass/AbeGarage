@@ -13,8 +13,8 @@ import { useContext } from "react";
 const Home = () => {
   const { isLogged, isAdmin, setIsAdmin, setIsLogged, employee } =
     useContext(AuthContext);
-  // console.log(employee);
-  // console.log(isLogged);
+   console.log(employee);
+   console.log(isLogged);
   return (
     <div>
       <div className="page-wrapper">

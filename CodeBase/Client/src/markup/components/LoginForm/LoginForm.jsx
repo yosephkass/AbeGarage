@@ -66,44 +66,19 @@ function LoginForm() {
 		if (!valid) {
 			return;
 		}
-		console.log(valid);
-		// Handle form submission here
-		// console.log(form);
-		// Call the service
-		const loginEmployee = loginService.logIn(form);
-		if (loginEmployee) {
-			navigate("/");
+
+		const loginEmployee =  await loginService.logIn(form);
+		
+		if (loginEmployee.sucess) {
+			if(loginEmployee.role == 'employee'){
+				navigate("/");
+			}else{
+				navigate("/admin/dashbord");
+			}
 		}
-		// console.log(loginEmployee);
-		// loginEmployee.then((response) => response.json())
-		//   .then((response) => {
-		//     console.log(response);
-		//     if (response.status === 'success') {
-		//       // Save the user in the local storage
-		//       if (response.data.employee_token) {
-		//         console.log(response.data);
-		//         localStorage.setItem("employee", JSON.stringify(response.data));
-		//       }
-		//       // Redirect the user to the dashboard
-		//       // navigate('/admin');
-		//       console.log(location);
-		//       if (location.pathname === '/login') {
-		//         // navigate('/admin');
-		//         // window.location.replace('/admin');
-		//         // To home for now
-		//         window.location.replace('/');
-		//       } else {
-		//         window.location.reload();
-		//       }
-		//     } else {
-		//       // Show an error message
-		//       setServerError(response.message);
-		//     }
-		//   })
-		//   .catch((err) => {
-		//     console.log(err);
-		//     setServerError('An error has occurred. Please try again later.' + err);
-		//   });
+	
+	
+	
 	};
 
 	return (

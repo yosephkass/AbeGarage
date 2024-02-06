@@ -80,14 +80,16 @@ const employeeService = {
 			console.log(error);
 		}
 	},
+
 	updateEmployeeInfoTable: async (data) => {
 		try {
 			const row = await query(employeeQuery.updateEmployeeInfo, [
-				data.employee_id,
 				data.employee_first_name,
 				data.employee_last_name,
 				data.employee_phone,
+				data.employee_id,
 			]);
+
 			return row;
 		} catch (error) {
 			console.log(error);
@@ -104,6 +106,18 @@ const employeeService = {
 			console.log(error);
 		}
 	},
+
+	getEmployeeList: async ()=>{
+		try {
+			const rows = await query(employeeQuery.getEmployeeList);
+			return rows;
+		} catch (error) {
+			console.log(error);
+		}
+
+	}
+
+	
 };
 
 export default employeeService;

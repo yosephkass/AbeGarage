@@ -5,6 +5,7 @@ import AdminTable from "../../../components/tables/AdminTable";
 import axios from "../../../../util/axios";
 
 
+
 function createData(Active, firstname, lastName, Email, Phone,AddedDate,Role,edit) {
 	return { Active, firstname, lastName, Email, Phone ,AddedDate,Role,edit};
  }
@@ -31,7 +32,7 @@ function EmployeeList() {
 
 	},[]);
 
-//  console.log(employees);
+console.log(employees);
 	return (
 		<>
 			<div className="">

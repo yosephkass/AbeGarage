@@ -24,6 +24,7 @@ import AddEmployeePage from "./markup/pages/admin/AddEmployeePage";
 import AddCustomerPage from "./markup/pages/admin/AddCustomerPage";
 import AdminDashbordPage from "./markup/pages/admin/AdminDashbordPage";
 import UpdateCustomerPage from "./markup/pages/admin/updateCustomer/UpdateCustomerPage";
+import UpdateEmployeePage from "./markup/pages/admin/UpdateEmployeePage/UpdateEmployeePage";
 import CustomerList from "./markup/pages/admin/Custoner/CustomerList";
 
 function App() {
@@ -81,6 +82,15 @@ function App() {
 					element={
 						<>
 							<UpdateCustomerPage />
+						</>
+					}
+				/>
+
+			<Route
+					path="/admin/update-single-employee"
+					element={
+						<>
+							<UpdateEmployeePage />
 						</>
 					}
 				/>

@@ -45,6 +45,7 @@ const loginController = {
 				const employeeRole = await loginService.getEmployeeRoleById(
 					employee_id
 				);
+				console.log(employeeRole);
 				const employee_role = employeeRole[0].company_role_name;
 				//get first name
 				const employeeInfo = await loginService.getEmployeeInfoById(
@@ -65,6 +66,7 @@ const loginController = {
 
 				return res.status(200).json({
 					success: true,
+					employee_role,
 					message: "Logged-in successfully",
 					token,
 					//Token sent successfully

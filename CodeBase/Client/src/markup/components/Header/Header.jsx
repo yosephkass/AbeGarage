@@ -8,7 +8,7 @@ import { useAuth } from "../../../Contexts/AuthContext";
 
 function Header(props) {
 	const navigator = useNavigate();
-	const { isLogged, setIsLogged, employee } = useAuth();
+	const { isLogged, setIsLogged, employee,isAdmin } = useAuth();
 	// useEffect(() => {
 	// 	if (!isLogged) {
 	// 		navigator("/login");
@@ -83,7 +83,7 @@ function Header(props) {
 													<Link to="/contact">Contact Us</Link>
 												</li>
 												<li>
-													<h5>{employee.employee_first_name}</h5>
+													<h5>{!isAdmin? employee.employee_first_name: <Link to='/admin/dashbord'></Link>}</h5>
 												</li>
 											</ul>
 										</div>
