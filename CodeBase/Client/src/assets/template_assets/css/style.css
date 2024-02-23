@@ -3988,7 +3988,7 @@ img {
 
 .page-title {
 	position: relative;
-	padding: 108px 0;
+	padding: 165px 0;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: right center;
@@ -3997,7 +3997,7 @@ img {
 .page-title .auto-container {
 	position: relative;
 }
-
+ 
 .page-title h2 {
 	position: relative;
 	color: #ffffff;

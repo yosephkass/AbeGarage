@@ -10,7 +10,7 @@ const TopBanner = (props) => {
             <ul className="page-breadcrumb">
                 <li><a href="index.html">{props.subtitle}</a></li>
                 <li>{props.title}</li>
-            </ul>
+            </ul> 
         </div>
         <h1 data-parallax='{"x": 200}'>Car Repairing</h1>
     </section>

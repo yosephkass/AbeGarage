@@ -1,6 +1,7 @@
 import React from 'react'
 import TopBanner from '../components/TopBanner/TopBanner'
-import backgroundImage from "../../assets/images/background/bg-2.jpg";
+import backgroundImage from "../../assets/images/background/contact-us.jpg";
+import map from "../../assets/images/custom/map.jpg"
 const Contact = () => {
   return (
     <>
@@ -63,7 +64,11 @@ const Contact = () => {
             </div>
         </div>
     </section>
-    
+    <section>
+        <div className="map">
+            <img src={map}></img>
+        </div>
+    </section>
     
     </>
   )
